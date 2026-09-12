@@ -1,0 +1,22 @@
+# Entornos virtuales
+venv/
+env/
+.env
+.venv/
+
+# Caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Datos crudos (no se suben por buenas prácticas de privacidad y peso)
+data/*.csv
+Dataset*.csv
+
+# Artefactos del SO
+.DS_Store
+Thumbs.db
+
+# Optuna/Jupyter cache
+.ipynb_checkpoints/
+*.db

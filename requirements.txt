@@ -1,0 +1,7 @@
+polars
+lightgbm
+matplotlib
+numpy
+scikit-learn
+optuna
+shap
