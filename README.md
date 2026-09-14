@@ -85,6 +85,8 @@ Los gráficos se guardarán automáticamente en la carpeta `plots/`.
 | `has_done_event_3` | Δ=36.9pp (20.7% vs 57.6%) con volumetría sólida en ambos grupos |
 | `has_done_event_1/2` | Δ≈25pp (46% vs 71%) |
 
+> **⚠️ Nota metodológica:** Este análisis bivariado sugirió inicialmente que el `has_done_event_3` era el principal hito de retención. Sin embargo, como se demuestra más adelante en el análisis de explicabilidad (SHAP), al evaluar las interacciones multivariadas, el verdadero motor de retención a largo plazo es el **Evento 4** (junto con el Evento 1). El Evento 3 actúa simplemente como un "despertador" de interés inicial.
+
 ---
 
 ## Documentación detallada

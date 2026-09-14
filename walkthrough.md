@@ -231,7 +231,7 @@ El script [`eda_churn_bivariado.py`](./src/eda_churn_bivariado.py) analiza la ta
 - **Event 5:** casi no discrimina (Δ=2pp).
 
 > [!IMPORTANT]
-> Las variables `has_done_event_3`, `total_events` y `ratio_event_3` se perfilan como los features con mayor poder predictivo para el modelo de churn Día +1 (D1).
+> El EDA señala a `has_done_event_3` y `total_events` como métricas fuertes en el análisis univariado. No obstante, el modelo multivariado posterior (ver gráfico SHAP) revelará que el **Evento 4** es el verdadero predictor dominante, demostrando que el Evento 3 es solo una puerta de entrada al hábito.
 
 ---
 
