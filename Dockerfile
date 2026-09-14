@@ -12,6 +12,7 @@ WORKDIR /app
 # Instalar dependencias del sistema operativo (opcional, por si hiciera falta para compilar)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
+    libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
 # Copiar el archivo de requisitos e instalar dependencias
