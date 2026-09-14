@@ -42,6 +42,10 @@ Pipeline modular de feature engineering con 4 funciones encadenadas via `.pipe()
 
 Script de EDA bivariado que importa el pipeline, genera tablas agregadas y 7 gráficos ejecutivos en PNG.
 
+### [`eda_churn_utc_raw.py`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/src/eda_churn_utc_raw.py)
+
+Script auxiliar exploratorio generado para evidenciar el borde temporal truncado en los datos crudos (sin filtros ni conversión UTC-3). Exporta un gráfico de diagnóstico: `churn_by_install_date_UTC.png`.
+
 ---
 
 ## 3. Fase 1 — Limpieza y Normalización Geográfica
