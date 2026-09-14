@@ -20,3 +20,6 @@ Thumbs.db
 # Optuna/Jupyter cache
 .ipynb_checkpoints/
 *.db
+
+
+
