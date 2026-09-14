@@ -34,15 +34,15 @@
 
 ## 2. Scripts Creados
 
-### [`churn_feature_pipeline.py`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/src/churn_feature_pipeline.py)
+### [`churn_feature_pipeline.py`](./src/churn_feature_pipeline.py)
 
 Pipeline modular de feature engineering con 4 funciones encadenadas via `.pipe()` en lazy evaluation.
 
-### [`eda_churn_bivariado.py`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/src/eda_churn_bivariado.py)
+### [`eda_churn_bivariado.py`](./src/eda_churn_bivariado.py)
 
 Script de EDA bivariado que importa el pipeline, genera tablas agregadas y 7 gráficos ejecutivos en PNG.
 
-### [`eda_churn_utc_raw.py`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/src/eda_churn_utc_raw.py)
+### [`eda_churn_utc_raw.py`](./src/eda_churn_utc_raw.py)
 
 Script auxiliar exploratorio generado para evidenciar el borde temporal truncado en los datos crudos (sin filtros ni conversión UTC-3). Exporta un gráfico de diagnóstico: `churn_by_install_date_UTC.png`.
 
@@ -50,7 +50,7 @@ Script auxiliar exploratorio generado para evidenciar el borde temporal truncado
 
 ## 3. Fase 1 — Limpieza y Normalización Geográfica
 
-> Función: [`fase_1_geo()`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/src/churn_feature_pipeline.py#L26-L46)
+> Función: [`fase_1_geo()`](./src/churn_feature_pipeline.py#L26-L46)
 
 ### Acciones realizadas
 
@@ -67,7 +67,7 @@ Script auxiliar exploratorio generado para evidenciar el borde temporal truncado
 
 ## 4. Fase 2 — Manejo de Fechas y Feature Engineering Temporal
 
-> Función: [`fase_2_temporal()`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/src/churn_feature_pipeline.py#L52-L127)
+> Función: [`fase_2_temporal()`](./src/churn_feature_pipeline.py#L52-L127)
 
 ### Registros eliminados
 
@@ -102,7 +102,7 @@ Esto evita que registros del 1° de julio UTC (que al restar 3h caen en la noche
 
 ## 5. Fase 3 — Demografía y Comportamiento (Eventos)
 
-> Función: [`fase_3_demo_eventos()`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/src/churn_feature_pipeline.py#L133-L173)
+> Función: [`fase_3_demo_eventos()`](./src/churn_feature_pipeline.py#L133-L173)
 
 ### Variables creadas
 
@@ -124,7 +124,7 @@ Esto evita que registros del 1° de julio UTC (que al restar 3h caen en la noche
 
 ## 6. Casteo final de Categoricals
 
-> Función: [`castear_categoricals()`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/src/churn_feature_pipeline.py#L179-L188)
+> Función: [`castear_categoricals()`](./src/churn_feature_pipeline.py#L179-L188)
 
 Columnas casteadas a `Categorical` para procesamiento nativo por LightGBM:
 
@@ -164,11 +164,11 @@ has_done_event_1 … has_5     Int8
 
 ## 8. EDA Bivariado — Análisis y Gráficos
 
-El script [`eda_churn_bivariado.py`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/src/eda_churn_bivariado.py) analiza la tasa de churn segmentada por 7 variables clave. Cada gráfico muestra el porcentaje de churn y el volumen `(n=X)` sobre cada barra para detectar problemas de volumetría.
+El script [`eda_churn_bivariado.py`](./src/eda_churn_bivariado.py) analiza la tasa de churn segmentada por 7 variables clave. Cada gráfico muestra el porcentaje de churn y el volumen `(n=X)` sobre cada barra para detectar problemas de volumetría.
 
 ### 8.1 Churn por Fecha de Instalación (hora local ART)
 
-![Tasa de Churn D1 por Fecha de Instalación](c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_install_date.png)
+![Tasa de Churn D1 por Fecha de Instalación](./plots/churn_by_install_date.png)
 
 - **Rango de churn estable:** 46.3% – 51.5% a lo largo de los 8 días.
 - El 30-Jun local (n=541) son registros del 1° Jul UTC madrugada que tienen ventana completa.
@@ -177,7 +177,7 @@ El script [`eda_churn_bivariado.py`](file:///c:/Users/Facundo San Martino/Deskto
 
 ### 8.2 Churn por Weekend Day+1
 
-![Tasa de Churn D1 — ¿El día +1 es fin de semana?](c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_weekend_day1.png)
+![Tasa de Churn D1 — ¿El día +1 es fin de semana?](./plots/churn_by_weekend_day1.png)
 
 - **Después de la limpieza del borde:** la diferencia se redujo de 17.8pp a solo **2.1pp** (49.6% vs 47.5%).
 - El efecto "weekend" que parecía fuerte era en gran parte un artefacto de los registros truncados del 30-Jun.
@@ -187,7 +187,7 @@ El script [`eda_churn_bivariado.py`](file:///c:/Users/Facundo San Martino/Deskto
 
 ### 8.3 Churn por Franja Horaria
 
-![Tasa de Churn D1 por Franja Horaria](c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_time_of_day.png)
+![Tasa de Churn D1 por Franja Horaria](./plots/churn_by_time_of_day.png)
 
 - Diferencias mínimas entre franjas: 47.1% (Noche) a 48.9% (Mañana).
 - **Baja capacidad discriminativa** para churn D1 por sí sola.
@@ -195,7 +195,7 @@ El script [`eda_churn_bivariado.py`](file:///c:/Users/Facundo San Martino/Deskto
 
 ### 8.4 Churn por Segmento de Edad
 
-![Tasa de Churn D1 por Segmento de Edad](c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_age_segment.png)
+![Tasa de Churn D1 por Segmento de Edad](./plots/churn_by_age_segment.png)
 
 - Solo **2 segmentos son estadísticamente confiables:** `13_17` (n=6,534, churn 50.7%) y `18_20` (n=11,133, churn 46.5%).
 - Los segmentos con tasas extremas (100%, 83.3%) tienen n ≤ 12 — **ruido estadístico, no actionable**.
@@ -205,14 +205,14 @@ El script [`eda_churn_bivariado.py`](file:///c:/Users/Facundo San Martino/Deskto
 
 ### 8.5 Churn por Plataforma
 
-![Tasa de Churn D1 por Plataforma](c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_platform.png)
+![Tasa de Churn D1 por Plataforma](./plots/churn_by_platform.png)
 
 - **Android** (n=17,205): 48.3% churn vs **iOS** (n=487): 40.0%. Diferencia de 8.3pp.
 - iOS representa solo el 2.8% del volumen total — la señal es interesante pero la muestra es reducida.
 
 ### 8.6 Churn por Volumen de Interacción ⭐
 
-![Tasa de Churn D1 por Volumen de Interacción](c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_total_events.png)
+![Tasa de Churn D1 por Volumen de Interacción](./plots/churn_by_total_events.png)
 
 - **El predictor más fuerte encontrado en el EDA.** Relación monotónica inversa perfecta:
   - `0-10 eventos` → 72.8% churn (n=4,641)
@@ -223,7 +223,7 @@ El script [`eda_churn_bivariado.py`](file:///c:/Users/Facundo San Martino/Deskto
 
 ### 8.7 Churn por Descubrimiento de Eventos
 
-![Tasa de Churn D1 — Descubrimiento de Eventos](c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_events_discovery.png)
+![Tasa de Churn D1 — Descubrimiento de Eventos](./plots/churn_by_events_discovery.png)
 
 - **Event 3 es el diferenciador estrella:** quien lo realizó tiene solo 20.7% de churn vs 57.6% si no lo hizo (Δ=36.9pp). Ambos grupos con volumetría sólida (n=4,554 y n=13,138).
 - **Events 1 y 2** también discriminan bien: ~71% churn sin interacción vs ~46% con interacción.
@@ -237,7 +237,7 @@ El script [`eda_churn_bivariado.py`](file:///c:/Users/Facundo San Martino/Deskto
 
 ## 9. Entrenamiento del Modelo de Churn D1 (LightGBM)
 
-El script [`src/train_churn_model.py`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/src/train_churn_model.py) orquesta el entrenamiento de un clasificador binario.
+El script [`src/train_churn_model.py`](./src/train_churn_model.py) orquesta el entrenamiento de un clasificador binario.
 
 ### 9.1 Preparación de Datos y Split
 - **Dataset:** 17,692 filas generadas por el pipeline.
@@ -260,7 +260,7 @@ El modelo final (entrenado sobre el 100% del set de Train) logró los siguientes
 
 ### 9.4 Explicabilidad (SHAP)
 
-![SHAP Summary Plot](c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/shap_summary.png)
+![SHAP Summary Plot](./plots/shap_summary.png)
 
 El gráfico SHAP confirma los hallazgos del EDA multivariado:
 - Las variables conductuales (`event_4`, `event_1`, `ratio_event_5`, `total_events`) dominan por completo el top de features predictivos.
@@ -273,14 +273,14 @@ El gráfico SHAP confirma los hallazgos del EDA multivariado:
 
 | Archivo | Descripción |
 |---|---|
-| [`churn_feature_pipeline.py`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/src/churn_feature_pipeline.py) | Pipeline modular de feature engineering (Polars lazy) |
-| [`eda_churn_bivariado.py`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/src/eda_churn_bivariado.py) | Script de EDA bivariado con tablas + 7 visualizaciones |
-| [`churn_by_install_date.png`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_install_date.png) | Gráfico: churn por fecha de instalación (hora local ART) |
-| [`churn_by_weekend_day1.png`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_weekend_day1.png) | Gráfico: churn por weekend day+1 |
-| [`churn_by_time_of_day.png`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_time_of_day.png) | Gráfico: churn por franja horaria |
-| [`churn_by_age_segment.png`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_age_segment.png) | Gráfico: churn por segmento etario |
-| [`churn_by_platform.png`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_platform.png) | Gráfico: churn por plataforma |
-| [`churn_by_total_events.png`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_total_events.png) | Gráfico: churn por volumen de interacción |
-| [`churn_by_events_discovery.png`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/churn_by_events_discovery.png) | Gráfico: churn por descubrimiento de eventos (barras agrupadas) |
-| [`train_churn_model.py`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/src/train_churn_model.py) | Script de entrenamiento LightGBM + Optuna + SHAP |
-| [`shap_summary.png`](file:///c:/Users/Facundo San Martino/Desktop/Proyectos/etermax/plots/shap_summary.png) | Gráfico SHAP de explicabilidad del modelo |
+| [`churn_feature_pipeline.py`](./src/churn_feature_pipeline.py) | Pipeline modular de feature engineering (Polars lazy) |
+| [`eda_churn_bivariado.py`](./src/eda_churn_bivariado.py) | Script de EDA bivariado con tablas + 7 visualizaciones |
+| [`churn_by_install_date.png`](./plots/churn_by_install_date.png) | Gráfico: churn por fecha de instalación (hora local ART) |
+| [`churn_by_weekend_day1.png`](./plots/churn_by_weekend_day1.png) | Gráfico: churn por weekend day+1 |
+| [`churn_by_time_of_day.png`](./plots/churn_by_time_of_day.png) | Gráfico: churn por franja horaria |
+| [`churn_by_age_segment.png`](./plots/churn_by_age_segment.png) | Gráfico: churn por segmento etario |
+| [`churn_by_platform.png`](./plots/churn_by_platform.png) | Gráfico: churn por plataforma |
+| [`churn_by_total_events.png`](./plots/churn_by_total_events.png) | Gráfico: churn por volumen de interacción |
+| [`churn_by_events_discovery.png`](./plots/churn_by_events_discovery.png) | Gráfico: churn por descubrimiento de eventos (barras agrupadas) |
+| [`train_churn_model.py`](./src/train_churn_model.py) | Script de entrenamiento LightGBM + Optuna + SHAP |
+| [`shap_summary.png`](./plots/shap_summary.png) | Gráfico SHAP de explicabilidad del modelo |
