@@ -62,8 +62,8 @@ python -X utf8 main.py
 Los gráficos se guardarán automáticamente en la carpeta `plots/`.
 
 **Métricas Finales (Test Set):**
-- **PR-AUC:** 0.7539
-- **ROC-AUC:** 0.7836
+- **PR-AUC:** 0.7503
+- **ROC-AUC:** 0.7838
 
 ---
 

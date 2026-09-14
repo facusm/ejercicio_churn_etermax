@@ -255,8 +255,8 @@ Los mejores hiperparámetros hallados fueron:
 
 ### 9.3 Evaluación en Test
 El modelo final (entrenado sobre el 100% del set de Train) logró los siguientes resultados sobre el set de Test puro:
-- **PR-AUC:** 0.7539
-- **ROC-AUC:** 0.7836
+- **PR-AUC:** 0.7503
+- **ROC-AUC:** 0.7838
 
 ### 9.4 Explicabilidad (SHAP)
 
