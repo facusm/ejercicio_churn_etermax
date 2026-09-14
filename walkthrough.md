@@ -1,8 +1,8 @@
-# Walkthrough — Pipeline de Churn D1 para Etermax
+# Walkthrough — Pipeline de Churn Día +1 (D1) para Etermax
 
 ## 1. Contexto del Proyecto
 
-**Objetivo:** construir un pipeline de preparación de datos para un modelo predictivo de churn Día 1 en videojuegos móviles, utilizando exclusivamente datos internos del dataset.
+**Objetivo:** construir un pipeline de preparación de datos para un modelo predictivo de churn Día +1 (D1) en videojuegos móviles, utilizando exclusivamente datos internos del dataset.
 
 **Stack:** Polars (lazy evaluation) → LightGBM
 
@@ -72,7 +72,7 @@ Script auxiliar exploratorio generado para evidenciar el borde temporal truncado
 ### Registros eliminados
 
 > [!WARNING]
-> Se identificó un problema de borde temporal: los registros del **30 de junio de 2018 (UTC)** tenían una ventana de retención D1 truncada, lo que inflaba artificialmente su tasa de churn.
+> Se identificó un problema de borde temporal: los registros del **30 de junio de 2018 (UTC)** tenían una ventana de retención Día +1 (D1) truncada, lo que inflaba artificialmente su tasa de churn.
 
 | Fecha (UTC) | Filas | Churn rate | Problema |
 |---|---|---|---|
@@ -85,7 +85,7 @@ Script auxiliar exploratorio generado para evidenciar el borde temporal truncado
 2. Filtrar registros donde `install_time.dt.date() == 2018-06-30` (en UTC, antes del offset)
 3. Recién después aplicar el offset de `-3h` para convertir a hora local ART
 
-Esto evita que registros del 1° de julio UTC (que al restar 3h caen en la noche del 30 de junio local) sean eliminados incorrectamente. Esos registros **sí** tienen ventana D1 completa.
+Esto evita que registros del 1° de julio UTC (que al restar 3h caen en la noche del 30 de junio local) sean eliminados incorrectamente. Esos registros **sí** tienen ventana Día +1 (D1) completa.
 
 ### Variables nuevas creadas
 
@@ -168,7 +168,7 @@ El script [`eda_churn_bivariado.py`](./src/eda_churn_bivariado.py) analiza la ta
 
 ### 8.1 Churn por Fecha de Instalación (hora local ART)
 
-![Tasa de Churn D1 por Fecha de Instalación](./plots/churn_by_install_date.png)
+![Tasa de Churn Día +1 (D1) por Fecha de Instalación](./plots/churn_by_install_date.png)
 
 - **Rango de churn estable:** 46.3% – 51.5% a lo largo de los 8 días.
 - El 30-Jun local (n=541) son registros del 1° Jul UTC madrugada que tienen ventana completa.
@@ -177,7 +177,7 @@ El script [`eda_churn_bivariado.py`](./src/eda_churn_bivariado.py) analiza la ta
 
 ### 8.2 Churn por Weekend Day+1
 
-![Tasa de Churn D1 — ¿El día +1 es fin de semana?](./plots/churn_by_weekend_day1.png)
+![Tasa de Churn Día +1 (D1) — ¿El día +1 es fin de semana?](./plots/churn_by_weekend_day1.png)
 
 - **Después de la limpieza del borde:** la diferencia se redujo de 17.8pp a solo **2.1pp** (49.6% vs 47.5%).
 - El efecto "weekend" que parecía fuerte era en gran parte un artefacto de los registros truncados del 30-Jun.
@@ -187,15 +187,15 @@ El script [`eda_churn_bivariado.py`](./src/eda_churn_bivariado.py) analiza la ta
 
 ### 8.3 Churn por Franja Horaria
 
-![Tasa de Churn D1 por Franja Horaria](./plots/churn_by_time_of_day.png)
+![Tasa de Churn Día +1 (D1) por Franja Horaria](./plots/churn_by_time_of_day.png)
 
 - Diferencias mínimas entre franjas: 47.1% (Noche) a 48.9% (Mañana).
-- **Baja capacidad discriminativa** para churn D1 por sí sola.
+- **Baja capacidad discriminativa** para churn Día +1 (D1) por sí sola.
 - La volumetría es razonable en las 4 franjas (1,758 a 6,724 usuarios).
 
 ### 8.4 Churn por Segmento de Edad
 
-![Tasa de Churn D1 por Segmento de Edad](./plots/churn_by_age_segment.png)
+![Tasa de Churn Día +1 (D1) por Segmento de Edad](./plots/churn_by_age_segment.png)
 
 - Solo **2 segmentos son estadísticamente confiables:** `13_17` (n=6,534, churn 50.7%) y `18_20` (n=11,133, churn 46.5%).
 - Los segmentos con tasas extremas (100%, 83.3%) tienen n ≤ 12 — **ruido estadístico, no actionable**.
@@ -205,14 +205,14 @@ El script [`eda_churn_bivariado.py`](./src/eda_churn_bivariado.py) analiza la ta
 
 ### 8.5 Churn por Plataforma
 
-![Tasa de Churn D1 por Plataforma](./plots/churn_by_platform.png)
+![Tasa de Churn Día +1 (D1) por Plataforma](./plots/churn_by_platform.png)
 
 - **Android** (n=17,205): 48.3% churn vs **iOS** (n=487): 40.0%. Diferencia de 8.3pp.
 - iOS representa solo el 2.8% del volumen total — la señal es interesante pero la muestra es reducida.
 
 ### 8.6 Churn por Volumen de Interacción ⭐
 
-![Tasa de Churn D1 por Volumen de Interacción](./plots/churn_by_total_events.png)
+![Tasa de Churn Día +1 (D1) por Volumen de Interacción](./plots/churn_by_total_events.png)
 
 - **El predictor más fuerte encontrado en el EDA.** Relación monotónica inversa perfecta:
   - `0-10 eventos` → 72.8% churn (n=4,641)
@@ -223,7 +223,7 @@ El script [`eda_churn_bivariado.py`](./src/eda_churn_bivariado.py) analiza la ta
 
 ### 8.7 Churn por Descubrimiento de Eventos
 
-![Tasa de Churn D1 — Descubrimiento de Eventos](./plots/churn_by_events_discovery.png)
+![Tasa de Churn Día +1 (D1) — Descubrimiento de Eventos](./plots/churn_by_events_discovery.png)
 
 - **Event 3 es el diferenciador estrella:** quien lo realizó tiene solo 20.7% de churn vs 57.6% si no lo hizo (Δ=36.9pp). Ambos grupos con volumetría sólida (n=4,554 y n=13,138).
 - **Events 1 y 2** también discriminan bien: ~71% churn sin interacción vs ~46% con interacción.
@@ -231,11 +231,11 @@ El script [`eda_churn_bivariado.py`](./src/eda_churn_bivariado.py) analiza la ta
 - **Event 5:** casi no discrimina (Δ=2pp).
 
 > [!IMPORTANT]
-> Las variables `has_done_event_3`, `total_events` y `ratio_event_3` se perfilan como los features con mayor poder predictivo para el modelo de churn D1.
+> Las variables `has_done_event_3`, `total_events` y `ratio_event_3` se perfilan como los features con mayor poder predictivo para el modelo de churn Día +1 (D1).
 
 ---
 
-## 9. Entrenamiento del Modelo de Churn D1 (LightGBM)
+## 9. Entrenamiento del Modelo de Churn Día +1 (D1) (LightGBM)
 
 El script [`src/train_churn_model.py`](./src/train_churn_model.py) orquesta el entrenamiento de un clasificador binario.
 

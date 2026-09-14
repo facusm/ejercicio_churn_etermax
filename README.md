@@ -1,6 +1,6 @@
-# Churn D1 — Pipeline & EDA · Etermax
+# Churn Día +1 (D1) — Pipeline & EDA · Etermax
 
-Modelo predictivo de **churn Día 1** para videojuegos móviles.  
+Modelo predictivo de **churn Día +1 (D1)** para videojuegos móviles.  
 Pipeline de feature engineering con [Polars](https://pola.rs/) (lazy evaluation) orientado a entrenamiento con [LightGBM](https://lightgbm.readthedocs.io/).
 
 ---
