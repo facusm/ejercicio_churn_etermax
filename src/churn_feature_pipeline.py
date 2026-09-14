@@ -14,6 +14,7 @@ import polars as pl
 # ─────────────────────────────────────────────────────────────────────────────
 # Configuración
 # ─────────────────────────────────────────────────────────────────────────────
+PROJECT_DIR = Path(__file__).resolve().parent.parent
 DATA_PATH = PROJECT_DIR / "data" / "dataset_raw.csv"
 UTC_OFFSET_HOURS = -3          # Ajuste UTC → hora local (ART)
 EPSILON = 1e-5                 # Suavizado para evitar div/0 en ratios
@@ -211,7 +212,7 @@ def build_churn_features(path: Path = DATA_PATH) -> pl.DataFrame:
 # ─────────────────────────────────────────────────────────────────────────────
 # Ejecución & diagnóstico rápido
 # ─────────────────────────────────────────────────────────────────────────────
-if __name__ == "__main__":
+def main():
     df = build_churn_features()
 
     print("=" * 72)
@@ -256,3 +257,6 @@ if __name__ == "__main__":
     print(f"  is_weekend_day1 distribución:\n{df['is_weekend_day1'].value_counts().sort('is_weekend_day1')}")
     print()
     print("✅ DataFrame listo para LightGBM.")
+
+if __name__ == "__main__":
+    main()

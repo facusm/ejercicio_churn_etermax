@@ -8,7 +8,7 @@ Incluye validación cruzada, métricas de evaluación (PR-AUC) y explicabilidad 
 import sys
 from pathlib import Path
 
-PROJECT_DIR = Path(r"c:\Users\Facundo San Martino\Desktop\Proyectos\etermax")
+PROJECT_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_DIR))
 
 import polars as pl
@@ -141,7 +141,7 @@ def main():
     plt.savefig(out_png, bbox_inches="tight", dpi=200)
     plt.close()
     
-    print(f"✅ Análisis SHAP (Summary Plot) guardado en: {out_png}")
+    print(f"[OK] Análisis SHAP (Summary Plot) guardado en: {out_png}")
 
 if __name__ == "__main__":
     main()
